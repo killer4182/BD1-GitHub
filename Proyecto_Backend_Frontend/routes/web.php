@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/", function () {
     return view("landingPage");
-});
+})->name("landingPage");
 
 
 Route::get("/login", function () {
@@ -19,3 +19,6 @@ Route::get("/register", function () {
 Route::post("/verifyLogin", [UsuariosController::class, "login"])->name("verifyLogin");
 Route::post("/hacerRegistro", [UsuariosController::class, "crearUsuario"])->name("hacerRegistro");
 
+Route::get("/inicio", [UsuariosController::class, "inicio"])->name("inicio");
+
+Route::get("/logout", [UsuariosController::class, "logout"])->name("logout");   

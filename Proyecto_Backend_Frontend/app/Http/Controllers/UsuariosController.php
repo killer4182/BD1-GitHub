@@ -30,7 +30,7 @@ class UsuariosController extends Controller
         $usuario->correo_electronico = $request->correo;
         $usuario->fecha_creacion = now();
         $usuario->save();
-        return redirect()->route("verUsuarios");
+        return redirect()->route("login");
     }
     
     public function login(Request $request)
@@ -47,7 +47,7 @@ class UsuariosController extends Controller
                     'is_logged_in' => true
                 ]);
                 
-                return view("inicio");
+                return redirect()->route('inicio');
             }
         }
         return redirect()->route("login")->with('error', 'Credenciales inválidas');
@@ -59,5 +59,11 @@ class UsuariosController extends Controller
         return view("landingPage");
     }
 
-    
+    public function inicio()
+    {
+        if (!session('is_logged_in')) {
+            return redirect()->route('landingPage');
+        }
+        return view('inicio');
+    }
 }
