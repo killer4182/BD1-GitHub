@@ -15,9 +15,8 @@ return new class extends Migration
             $table->integer('codigo_usuario');
             $table->integer('codigo_repositorio');
             $table->integer('codigo_rol');
-            $table->integer('codigo_colaborador');
-
-            $table->primary('codigo_colaborador');
+            
+            $table->primary(['codigo_usuario', 'codigo_repositorio']);
 
             $table->foreign('codigo_repositorio')->references('codigo_repositorio')->on('tbl_repositorios');
             $table->foreign('codigo_rol')->references('codigo_rol')->on('tbl_roles');
