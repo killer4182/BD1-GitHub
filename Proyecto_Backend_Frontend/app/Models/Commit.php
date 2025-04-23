@@ -15,9 +15,13 @@ class Commit extends Model
     protected $fillable = [
         'codigo_commit',
         'codigo_usuario',
-        'codigo_repositorio',
+        'codigo_branch',
         'mensaje',
         'fecha'
+    ];
+
+    protected $casts = [
+        'fecha' => 'datetime'
     ];
 
     public function usuario()
@@ -25,13 +29,13 @@ class Commit extends Model
         return $this->belongsTo(Usuario::class, 'codigo_usuario', 'codigo_usuario');
     }
 
-    public function repositorio()
+    public function branch()
     {
-        return $this->belongsTo(Repositorio::class, 'codigo_repositorio', 'codigo_repositorio');
+        return $this->belongsTo(Branch::class, 'codigo_branch', 'codigo_branch');
     }
 
-    public function branches()
+    public function files()
     {
-        return $this->hasMany(Branch::class, 'codigo_ultimo_commit', 'codigo_commit');
+        return $this->hasMany(File::class, 'codigo_commit', 'codigo_commit');
     }
 } 

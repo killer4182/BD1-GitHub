@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('tbl_commits', function (Blueprint $table) {
             $table->integer('codigo_commit');
             $table->integer('codigo_usuario');
-            $table->integer('codigo_repositorio');
+            $table->integer('codigo_branch');
             $table->text('mensaje')->nullable();
-            $table->date('fecha')->nullable(); // Assuming date can be nullable
+            $table->date('fecha')->nullable();
 
             $table->primary('codigo_commit');
 
-            $table->foreign('codigo_repositorio')->references('codigo_repositorio')->on('tbl_repositorios');
             $table->foreign('codigo_usuario')->references('codigo_usuario')->on('tbl_usuarios');
+            $table->foreign('codigo_branch')->references('codigo_branch')->on('tbl_branches');
         });
     }
 

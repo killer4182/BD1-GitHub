@@ -26,7 +26,7 @@
                         <h3 class="mb-4">¡Hola, {{ session('user_name') }}!</h3>
                         <p class="lead">Has iniciado sesión correctamente en el sistema.</p>
                         <div class="mt-4 d-grid gap-3">
-                            <a href="{{ route('getRepositorios') }}" class="btn btn-primary">
+                            <a href="{{ route('repositorios') }}" class="btn btn-primary">
                                 Ver Mis Repositorios
                             </a>
                             <a href="{{ route('logout') }}" class="btn btn-secondary">Cerrar Sesión</a>

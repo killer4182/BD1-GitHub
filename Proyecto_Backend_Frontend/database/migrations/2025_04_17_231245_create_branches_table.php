@@ -15,11 +15,9 @@ return new class extends Migration
             $table->integer('codigo_branch');
             $table->string('nombre', 200)->nullable();
             $table->integer('codigo_repositorio');
-            $table->integer('codigo_ultimo_commit');
 
             $table->primary('codigo_branch');
 
-            $table->foreign('codigo_ultimo_commit')->references('codigo_commit')->on('tbl_commits');
             $table->foreign('codigo_repositorio')->references('codigo_repositorio')->on('tbl_repositorios');
         });
     }

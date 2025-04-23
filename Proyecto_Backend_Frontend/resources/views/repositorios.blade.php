@@ -27,7 +27,10 @@
                             @forelse($repositorios as $repositorio)
                                 <div class="list-group-item">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <h5 class="mb-1">{{ $repositorio->nombre_repositorio }}</h5>
+                                        <a href="{{ route('verRepositorio', ['codigo' => $repositorio->codigo_repositorio]) }}" 
+                                           class="text-decoration-none">
+                                            <h5 class="mb-1">{{ $repositorio->nombre_repositorio }}</h5>
+                                        </a>
                                         <span class="badge bg-secondary">Propietario: {{ $repositorio->usuario->nombre_usuario }}</span>
                                     </div>
                                 </div>

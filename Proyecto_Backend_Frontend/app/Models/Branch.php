@@ -15,8 +15,7 @@ class Branch extends Model
     protected $fillable = [
         'codigo_branch',
         'nombre',
-        'codigo_repositorio',
-        'codigo_ultimo_commit'
+        'codigo_repositorio'
     ];
 
     public function repositorio()
@@ -24,9 +23,9 @@ class Branch extends Model
         return $this->belongsTo(Repositorio::class, 'codigo_repositorio', 'codigo_repositorio');
     }
 
-    public function ultimoCommit()
+    public function commits()
     {
-        return $this->belongsTo(Commit::class, 'codigo_ultimo_commit', 'codigo_commit');
+        return $this->hasMany(Commit::class, 'codigo_branch', 'codigo_branch');
     }
 
     public function files()

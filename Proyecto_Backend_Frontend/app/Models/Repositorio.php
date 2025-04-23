@@ -30,4 +30,9 @@ class Repositorio extends Model
     {
         return $this->hasMany(Colaborador::class, 'codigo_repositorio', 'codigo_repositorio');
     }
+
+    public function branches()
+    {
+        return $this->hasMany(Branch::class, 'codigo_repositorio', 'codigo_repositorio');
+    }
 } 

@@ -12,16 +12,18 @@ class File extends Model
     
     public $incrementing = false;
     
+    public $timestamps = false;
+    
     protected $fillable = [
         'codigo_file',
-        'codigo_branch',
+        'codigo_commit',
         'nombre_file',
         'extension_name_file',
         'contenido'
     ];
 
-    public function branch()
+    public function commit()
     {
-        return $this->belongsTo(Branch::class, 'codigo_branch', 'codigo_branch');
+        return $this->belongsTo(Commit::class, 'codigo_commit', 'codigo_commit');
     }
 } 

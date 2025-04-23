@@ -89,4 +89,23 @@ class UsuariosController extends Controller
         
         return view('repositorios', compact('repositorios'));
     }
+
+    public function verRepositorio($codigo)
+    {
+        if (!session('is_logged_in')) {
+            return redirect()->route('landingPage');
+        }
+
+        // Store the selected repository code in the session
+        session(['selected_repository' => $codigo]);
+
+        // Get the repository details
+        $repositorio = Repositorio::where('codigo_repositorio', $codigo)->first();
+
+        if (!$repositorio) {
+            return redirect()->route('repositorios')->with('error', 'Repositorio no encontrado');
+        }
+
+        return view('verRepositorio', compact('repositorio'));
+    }
 }
