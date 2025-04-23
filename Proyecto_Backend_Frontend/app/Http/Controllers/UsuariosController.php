@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use App\Models\Repositorio;
 
 class UsuariosController extends Controller
 {
@@ -65,5 +66,27 @@ class UsuariosController extends Controller
             return redirect()->route('landingPage');
         }
         return view('inicio');
+    }
+
+    public function getRepositorios()
+    {
+        if (!session('is_logged_in')) {
+            return redirect()->route('landingPage');
+        }
+
+        $userId = session('user_id');
+        
+        // Get repositories where the user is the owner
+        $repositoriosPropios = Repositorio::where('codigo_usuario', $userId)->get();
+        
+        // Get repositories where the user is a collaborator
+        $repositoriosColaboracion = Repositorio::whereHas('colaboradores', function($query) use ($userId) {
+            $query->where('codigo_usuario', $userId);
+        })->get();
+        
+        // Merge both collections
+        $repositorios = $repositoriosPropios->merge($repositoriosColaboracion);
+        
+        return view('repositorios', compact('repositorios'));
     }
 }

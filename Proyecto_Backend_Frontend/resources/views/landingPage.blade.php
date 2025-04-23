@@ -22,7 +22,7 @@
                         <h2 class="text-center">Bienvenido</h2>
                     </div>
                     <div class="card-body text-center">
-                        <img src="SVG/GitHub_Wordmark_Dark.svg" alt="GitHub Logo" class="mb-4">
+                        <img src="SVG/GitHub_Wordmark_Light.svg" alt="GitHub Logo" class="mb-4">
                         <p class="lead mb-4">Por favor, seleccione una opción para continuar</p>
                         
                         <div class="d-grid gap-3">

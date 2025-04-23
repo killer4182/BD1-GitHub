@@ -12,7 +12,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <img src="SVG/GitHub_Lockup_Dark.svg" alt="GitHub Logo">
+                        <img src="SVG/GitHub_Lockup_Light.svg" alt="GitHub Logo">
                         <h3 class="card-title text-center mb-4"><b>Login</b></h3>
                         <form action="{{ route('verifyLogin') }}" method="POST">
                             @csrf

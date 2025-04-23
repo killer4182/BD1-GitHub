@@ -20,5 +20,6 @@ Route::post("/verifyLogin", [UsuariosController::class, "login"])->name("verifyL
 Route::post("/hacerRegistro", [UsuariosController::class, "crearUsuario"])->name("hacerRegistro");
 
 Route::get("/inicio", [UsuariosController::class, "inicio"])->name("inicio");
+Route::get("/repositorios", [UsuariosController::class, "getRepositorios"])->name("getRepositorios");
 
 Route::get("/logout", [UsuariosController::class, "logout"])->name("logout");   

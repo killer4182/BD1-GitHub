@@ -25,7 +25,10 @@
                         <img src="{{ asset('SVG/GitHub_Wordmark_Light.svg') }}" alt="GitHub Logo" class="mb-4">
                         <h3 class="mb-4">¡Hola, {{ session('user_name') }}!</h3>
                         <p class="lead">Has iniciado sesión correctamente en el sistema.</p>
-                        <div class="mt-4">
+                        <div class="mt-4 d-grid gap-3">
+                            <a href="{{ route('getRepositorios') }}" class="btn btn-primary">
+                                Ver Mis Repositorios
+                            </a>
                             <a href="{{ route('logout') }}" class="btn btn-secondary">Cerrar Sesión</a>
                         </div>
                     </div>
