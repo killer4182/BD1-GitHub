@@ -16,11 +16,21 @@ class File extends Model
     
     protected $fillable = [
         'codigo_file',
+        'codigo_branch',
         'codigo_commit',
         'nombre_file',
         'extension_name_file',
-        'contenido'
+        'fecha'
     ];
+
+    protected $casts = [
+        'fecha' => 'datetime'
+    ];
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class, 'codigo_branch', 'codigo_branch');
+    }
 
     public function commit()
     {

@@ -8,11 +8,14 @@ class Colaborador extends Model
 {
     protected $table = 'tbl_colaboradores';
     
-    protected $primaryKey = ['codigo_usuario', 'codigo_repositorio'];
+    protected $primaryKey = 'codigo_colaborador';
     
     public $incrementing = false;
     
+    public $timestamps = false;
+    
     protected $fillable = [
+        'codigo_colaborador',
         'codigo_usuario',
         'codigo_repositorio',
         'codigo_rol'

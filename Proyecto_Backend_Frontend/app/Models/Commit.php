@@ -12,6 +12,8 @@ class Commit extends Model
     
     public $incrementing = false;
     
+    public $timestamps = false;
+    
     protected $fillable = [
         'codigo_commit',
         'codigo_usuario',
@@ -37,5 +39,10 @@ class Commit extends Model
     public function files()
     {
         return $this->hasMany(File::class, 'codigo_commit', 'codigo_commit');
+    }
+
+    public function tags()
+    {
+        return $this->hasMany(Tag::class, 'codigo_commit', 'codigo_commit');
     }
 } 

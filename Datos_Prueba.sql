@@ -48,7 +48,9 @@ commit;
 
 -- Insert data into tbl_branches
 INSERT INTO tbl_branches (codigo_branch, nombre, codigo_repositorio) VALUES (1, 'main', 1);
-INSERT INTO tbl_branches (codigo_branch, nombre, codigo_repositorio) VALUES (2, 'develop', 2);
+INSERT INTO tbl_branches (codigo_branch, nombre, codigo_repositorio) VALUES (2, 'develop', 1);
+INSERT INTO tbl_branches (codigo_branch, nombre, codigo_repositorio) VALUES (3, 'main', 2);
+INSERT INTO tbl_branches (codigo_branch, nombre, codigo_repositorio) VALUES (4, 'feature/login', 2);
 commit;
 
 -- Insert data into tbl_commits
@@ -56,13 +58,29 @@ INSERT INTO tbl_commits (codigo_commit, codigo_usuario, codigo_branch, mensaje, 
 VALUES (1, 1, 1, 'Initial commit', TO_DATE('2023-01-01', 'YYYY-MM-DD'));
 INSERT INTO tbl_commits (codigo_commit, codigo_usuario, codigo_branch, mensaje, fecha) 
 VALUES (2, 2, 2, 'Added new feature', TO_DATE('2023-02-01', 'YYYY-MM-DD'));
+INSERT INTO tbl_commits (codigo_commit, codigo_usuario, codigo_branch, mensaje, fecha) 
+VALUES (3, 1, 3, 'Project setup', TO_DATE('2023-02-15', 'YYYY-MM-DD'));
+INSERT INTO tbl_commits (codigo_commit, codigo_usuario, codigo_branch, mensaje, fecha) 
+VALUES (4, 2, 4, 'Login implementation', TO_DATE('2023-03-01', 'YYYY-MM-DD'));
 commit;
 
 -- Insert data into tbl_files
-INSERT INTO tbl_files (codigo_file, codigo_commit, nombre_file, extension_name_file, contenido) 
-VALUES (1, 1, 'index', 'html', '<html>...</html>');
-INSERT INTO tbl_files (codigo_file, codigo_commit, nombre_file, extension_name_file, contenido) 
-VALUES (2, 2, 'app', 'js', 'console.log("Hello World");');
+INSERT INTO tbl_files (codigo_file, codigo_branch, codigo_commit, nombre_file, extension_name_file, contenido) 
+VALUES (1, 1, 1, 'index', 'html', '<html>...</html>');
+INSERT INTO tbl_files (codigo_file, codigo_branch, codigo_commit, nombre_file, extension_name_file, contenido) 
+VALUES (2, 1, 1, 'styles', 'css', 'body { margin: 0; }');
+INSERT INTO tbl_files (codigo_file, codigo_branch, codigo_commit, nombre_file, extension_name_file, contenido) 
+VALUES (3, 1, 1, 'main', 'js', 'console.log("Main script");');
+INSERT INTO tbl_files (codigo_file, codigo_branch, codigo_commit, nombre_file, extension_name_file, contenido) 
+VALUES (4, 1, 1, 'config', 'json', '{"debug": true}');
+INSERT INTO tbl_files (codigo_file, codigo_branch, codigo_commit, nombre_file, extension_name_file, contenido) 
+VALUES (5, 1, 1, 'README', 'md', '# Project Documentation');
+INSERT INTO tbl_files (codigo_file, codigo_branch, codigo_commit, nombre_file, extension_name_file, contenido) 
+VALUES (6, 2, 2, 'app', 'js', 'console.log("Hello World");');
+INSERT INTO tbl_files (codigo_file, codigo_branch, codigo_commit, nombre_file, extension_name_file, contenido) 
+VALUES (7, 3, 3, 'README', 'md', '# Project B');
+INSERT INTO tbl_files (codigo_file, codigo_branch, codigo_commit, nombre_file, extension_name_file, contenido) 
+VALUES (8, 4, 4, 'login', 'php', '<?php // Login logic ?>');
 commit;
 
 -- Insert data into tbl_pull_requests
@@ -81,7 +99,7 @@ commit;
 
 -- Insert data into tbl_tags
 INSERT INTO tbl_tags (codigo_tag, codigo_repositorio, codigo_commit, nombre) VALUES (1, 1, 1, 'v1.0');
-INSERT INTO tbl_tags (codigo_tag, codigo_repositorio, codigo_commit, nombre) VALUES (2, 2, 2, 'v1.1');
+INSERT INTO tbl_tags (codigo_tag, codigo_repositorio, codigo_commit, nombre) VALUES (2, 2, 3, 'v1.1');
 commit;
 
 -- Insert data into tbl_colaboradores

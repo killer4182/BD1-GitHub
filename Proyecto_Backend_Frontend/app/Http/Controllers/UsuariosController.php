@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Repositorio;
+use App\Models\Colaborador;
+use App\Models\Commit;
+use App\Models\Issue;
+use App\Models\PullRequest;
+use App\Models\Proyecto;
 
 class UsuariosController extends Controller
 {
@@ -107,5 +112,72 @@ class UsuariosController extends Controller
         }
 
         return view('verRepositorio', compact('repositorio'));
+    }
+
+    public function borrarCuenta()
+    {
+        if (!session('is_logged_in')) {
+            return redirect()->route('landingPage');
+        }
+
+        $userId = session('user_id');
+
+        // Get all repositories owned by the user
+        $repositorios = Repositorio::where('codigo_usuario', $userId)->get();
+
+        foreach ($repositorios as $repositorio) {
+            // Delete files and their commits for each branch
+            foreach ($repositorio->branches as $branch) {
+                // Delete files and their commits
+                foreach ($branch->files as $file) {
+                    // Delete tags associated with the commit first
+                    if ($file->commit) {
+                        $file->commit->tags()->delete();
+                        $file->commit->delete();
+                    }
+                    $file->delete();
+                }
+                // Delete the branch
+                $branch->delete();
+            }
+
+            // Delete issues associated with the repository
+            $repositorio->issues()->delete();
+
+            // Delete pull requests associated with the repository
+            $repositorio->pullRequests()->delete();
+
+            // Delete tags associated with the repository
+            $repositorio->tags()->delete();
+
+            // Delete collaborations for this repository
+            $repositorio->colaboradores()->delete();
+
+            // Delete the repository
+            $repositorio->delete();
+        }
+
+        // Delete user's collaborations in other repositories
+        Colaborador::where('codigo_usuario', $userId)->delete();
+
+        // Delete user's commits
+        Commit::where('codigo_usuario', $userId)->delete();
+
+        // Delete user's issues
+        Issue::where('codigo_usuario', $userId)->delete();
+
+        // Delete user's pull requests
+        PullRequest::where('codigo_usuario', $userId)->delete();
+
+        // Delete user's projects
+        Proyecto::where('codigo_usuario', $userId)->delete();
+
+        // Delete the user
+        Usuario::where('codigo_usuario', $userId)->delete();
+
+        // Clear the session
+        session()->flush();
+
+        return redirect()->route('landingPage')->with('success', 'Tu cuenta ha sido eliminada exitosamente');
     }
 }

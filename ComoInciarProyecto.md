@@ -35,30 +35,20 @@ Una vez que hayas clonado el repositorio del proyecto Laravel, ejecutar los sigu
     ```
 
 4.  **Ejecutar las Migraciones:**
-    Para crear el esquema de la base de datos Oracle:
+    Para crear el esquema de la base de datos Oracle, solo hacer esto si las tablas aun no estan creadas:
     ```bash
     php artisan migrate --database=oracle
     ```
     Este comando ejecutará todos los archivos de migración en el directorio `database/migrations` en la conexión `oracle`.
 
-5.  **Sembrar la Base de Datos (Opcional):**
-    Si el proyecto tiene seeders para poblar la base de datos con datos iniciales:
-    ```bash
-    php artisan db:seed --database=oracle
-    ```
-
-6.  **Instalar los Activos del Frontend (Opcional para la version actual del proyecto):**
+5.  **Instalar los Activos del Frontend (Opcional para la version actual del proyecto):**
     Si el proyecto utiliza frameworks de frontend (Vue.js, React, etc.) o preprocesadores de CSS (Sass):
     ```bash
     npm install  # O yarn install
     npm run dev  # O yarn run dev (para desarrollo)
-    npm run build # O yarn run build (para producción)
     ```
 
-7.  **Configurar el Servidor Web(Si no tenes instalado PHP):**
-    Configurar su servidor web local (Apache, Nginx, o el servidor de desarrollo de Laravel) para que apunte al directorio `public` del proyecto como la raíz del documento.
-
-8.  **Iniciar el Servidor de Desarrollo (Para realizar pruebas):**
+6.  **Iniciar el Servidor de Desarrollo (Para realizar pruebas):**
     Para desarrollo local:
     ```bash
     php artisan serve

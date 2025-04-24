@@ -12,6 +12,8 @@ class Rol extends Model
     
     public $incrementing = false;
     
+    public $timestamps = false;
+    
     protected $fillable = [
         'codigo_rol',
         'rol'

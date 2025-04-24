@@ -11,15 +11,27 @@
                         <a href="{{ route('editarArchivo', ['codigo' => $file->codigo_file]) }}" class="btn btn-primary btn-sm me-2">
                             Editar
                         </a>
-                        <a href="{{ route('verRepositorio', ['codigo' => $file->commit->branch->codigo_repositorio]) }}" class="btn btn-secondary btn-sm">
+                        <a href="{{ route('verRepositorio', ['codigo' => $file->branch->codigo_repositorio]) }}" class="btn btn-secondary btn-sm">
                             Volver al Repositorio
                         </a>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
-                        <p><strong>Última modificación:</strong> {{ $file->commit->fecha->format('Y-m-d H:i:s') }}</p>
-                        <p><strong>Autor:</strong> {{ $file->commit->usuario->nombre_usuario }}</p>
+                        <p><strong>Última modificación:</strong> 
+                            @if($file->commit && $file->commit->fecha)
+                                {{ $file->commit->fecha->format('Y-m-d H:i:s') }}
+                            @else
+                                No disponible
+                            @endif
+                        </p>
+                        <p><strong>Autor:</strong> 
+                            @if($file->commit && $file->commit->usuario)
+                                {{ $file->commit->usuario->nombre_usuario }}
+                            @else
+                                No disponible
+                            @endif
+                        </p>
                     </div>
                     
                     <div class="file-content">

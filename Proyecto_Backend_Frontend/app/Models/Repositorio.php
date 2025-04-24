@@ -12,6 +12,8 @@ class Repositorio extends Model
     
     public $incrementing = false;
     
+    public $timestamps = false;
+    
     protected $fillable = [
         'codigo_repositorio',
         'codigo_usuario',
@@ -19,6 +21,10 @@ class Repositorio extends Model
         'descripcion',
         'visibilidad',
         'fecha_creacion'
+    ];
+
+    protected $casts = [
+        'fecha_creacion' => 'datetime'
     ];
 
     public function usuario()
@@ -34,5 +40,20 @@ class Repositorio extends Model
     public function branches()
     {
         return $this->hasMany(Branch::class, 'codigo_repositorio', 'codigo_repositorio');
+    }
+
+    public function tags()
+    {
+        return $this->hasMany(Tag::class, 'codigo_repositorio', 'codigo_repositorio');
+    }
+
+    public function issues()
+    {
+        return $this->hasMany(Issue::class, 'codigo_repositorio', 'codigo_repositorio');
+    }
+
+    public function pullRequests()
+    {
+        return $this->hasMany(PullRequest::class, 'codigo_repositorio', 'codigo_repositorio');
     }
 } 

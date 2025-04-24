@@ -12,6 +12,8 @@ class Branch extends Model
     
     public $incrementing = false;
     
+    public $timestamps = false;
+    
     protected $fillable = [
         'codigo_branch',
         'nombre',

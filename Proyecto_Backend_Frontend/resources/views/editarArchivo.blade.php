@@ -15,13 +15,24 @@
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
-                        <p><strong>Última modificación:</strong> {{ $file->commit->fecha->format('Y-m-d H:i:s') }}</p>
-                        <p><strong>Autor:</strong> {{ $file->commit->usuario->nombre_usuario }}</p>
+                        <p><strong>Última modificación:</strong> 
+                            @if($file->commit && $file->commit->fecha)
+                                {{ $file->commit->fecha->format('Y-m-d H:i:s') }}
+                            @else
+                                No disponible
+                            @endif
+                        </p>
+                        <p><strong>Autor:</strong> 
+                            @if($file->commit && $file->commit->usuario)
+                                {{ $file->commit->usuario->nombre_usuario }}
+                            @else
+                                No disponible
+                            @endif
+                        </p>
                     </div>
                     
                     <form action="{{ route('actualizarArchivo', ['codigo' => $file->codigo_file]) }}" method="POST">
                         @csrf
-                        @method('PUT')
                         <div class="mb-3">
                             <label for="contenido" class="form-label">Contenido del archivo</label>
                             <textarea class="form-control font-monospace" id="contenido" name="contenido" rows="20" style="background-color: #1a1a1a; color: #ffffff;">{{ $file->contenido }}</textarea>
